@@ -1,0 +1,54 @@
+;
+;  C31 Embedded Systems Klausur am 19. Juli 2017
+;  Name:
+;  Vorname:
+;  Matrikelnummer:
+;
+
+	reg0 EQU S0
+	reg1 EQU S1
+	
+	input_lower DSIN $00
+	input_upper DSIN $01
+	status DSIN $02
+	
+	
+	pwm_out_lower DSOUT $00
+	pwm_out_upper DSOUT $01
+	status_out DSOUT $02
+	
+	ORG 0
+	EINT
+	
+BEGIN:
+	;sad
+	load reg0, $07
+	out reg0, status_out ; enable pwm und encoder
+	
+LOOP:
+	 JUMP LOOP
+	  	
+	
+ISR:
+	in reg0, input_lower
+	in reg1, input_upper
+	
+	out reg0, pwm_out_lower
+	out reg1, pwm_out_upper
+
+	RETI ENABLE
+	
+
+	ORG $3ff
+	JUMP ISR
+	
+	
+	
+	
+
+
+
+
+
+
+VHDL "template.vhd", "programm.vhd", "programm"

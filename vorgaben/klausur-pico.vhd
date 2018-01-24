@@ -145,7 +145,7 @@ begin
 
 
 	-- lesen
-	process(clk)
+	process(port_id_signal)
 	begin 
 		if clk'event and clk = '1' then
 			
